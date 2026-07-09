@@ -711,13 +711,11 @@ function updateRS(){
   dc('cRS');
   const c=countBy(renuncias,'rs');
   const sorted=Object.entries(c).sort((a,b)=>b[1]-a[1]);
-  const canvas=document.getElementById('cRS');
-  canvas.style.height=Math.max(sorted.length*52+40,80)+'px';
-  canvas.style.maxHeight='none';
+  const ctx=document.getElementById('cRS').getContext('2d');
   const ctx=canvas.getContext('2d');
   charts['cRS']=new Chart(ctx,{type:'bar',
     data:{labels:sorted.map(e=>e[0]),datasets:[{data:sorted.map(e=>e[1]),backgroundColor:PALETTE.slice(0,sorted.length),borderRadius:5,borderSkipped:false}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    options:{indexAxis:'y',responsive:true,:false,plugins:{legend:{display:false}},
       scales:{x:{grid:{color:'#e8f5e8'},ticks:{color:'#555',font:{family:'Sora',size:10}}},y:{grid:{display:false},ticks:{color:'#182e1d',font:{family:'Sora',size:11}}}}}
   });
 }
